@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Persoonlijk</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: white;
+    }
+
+    .login-box {
+      width: 320px;
+      padding: 30px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+    }
+
+    button,
+    .persoonlijk-knop {
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      border: 0;
+      border-radius: 7px;
+      background: #667eea;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    #melding {
+      color: #d93025;
+    }
+
+    #persoonlijkKnop {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-box">
+
+    <h2>Inloggen</h2>
+
+    <input
+      type="text"
+      id="gebruikersnaam"
+      placeholder="Gebruikersnaam"
+    >
+
+    <input
+      type="password"
+      id="wachtwoord"
+      placeholder="Wachtwoord"
+    >
+
+    <button onclick="inloggen()">Inloggen</button>
+
+    <p id="melding"></p>
+
+    <div id="persoonlijkKnop">
+      <a
+        class="persoonlijk-knop"
+        href="https://sites.google.com/leerling.tabor.nl/klassieke-talen/persoonlijk"
+      >
+        Naar Persoonlijk
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    function inloggen() {
+
+      const gebruikersnaam =
+        document.getElementById("gebruikersnaam").value;
+
+      const wachtwoord =
+        document.getElementById("wachtwoord").value;
+
+      if (
+        gebruikersnaam === "ncos.tabor" &&
+        wachtwoord === "W3lKom33!"
+      ) {
+
+        document.getElementById("melding").textContent =
+          "Inloggen gelukt!";
+
+        document.getElementById("persoonlijkKnop").style.display =
+          "block";
+
+      } else {
+
+        document.getElementById("melding").textContent =
+          "Onjuiste inloggegevens.";
+
+        document.getElementById("persoonlijkKnop").style.display =
+          "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
