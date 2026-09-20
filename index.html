@@ -3,59 +3,137 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Persoonlijk</title>
+
+  <title>Inloggen</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
+
       display: flex;
       justify-content: center;
       align-items: center;
+
       font-family: Arial, sans-serif;
       background: white;
     }
 
     .login-box {
-      width: 320px;
-      padding: 30px;
+      width: 90%;
+      max-width: 380px;
+
+      padding: 35px;
+
+      background: white;
       border: 1px solid #ddd;
-      border-radius: 12px;
+      border-radius: 15px;
+
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+
       text-align: center;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: #222;
+    }
+
+    .subtitle {
+      color: #777;
+      margin-bottom: 25px;
     }
 
     input {
       width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      box-sizing: border-box;
+
+      padding: 13px;
+      margin: 7px 0;
+
       border: 1px solid #ccc;
-      border-radius: 7px;
+      border-radius: 8px;
+
+      font-size: 16px;
+      outline: none;
     }
 
-    button,
-    .persoonlijk-knop {
-      display: inline-block;
+    input:focus {
+      border-color: #667eea;
+    }
+
+    button {
       width: 100%;
-      padding: 12px;
-      margin-top: 12px;
-      border: 0;
-      border-radius: 7px;
+
+      padding: 13px;
+      margin-top: 15px;
+
+      border: none;
+      border-radius: 8px;
+
       background: #667eea;
       color: white;
+
+      font-size: 16px;
       font-weight: bold;
-      text-decoration: none;
+
       cursor: pointer;
-      box-sizing: border-box;
+    }
+
+    button:hover {
+      background: #5568d9;
     }
 
     #melding {
-      color: #d93025;
+      min-height: 22px;
+      margin-top: 15px;
+      font-size: 14px;
     }
 
-    #persoonlijkKnop {
+    /*
+      De knoppen hieronder zijn in eerste instantie verborgen.
+      Ze verschijnen pas na succesvol inloggen.
+    */
+
+    #persoonlijkKnop,
+    #tekstenKnop {
       display: none;
+      margin-top: 12px;
+    }
+
+    .site-knop {
+      display: block;
+
+      width: 100%;
+      padding: 13px;
+
+      border-radius: 8px;
+
+      background: #667eea;
+      color: white;
+
+      text-decoration: none;
+
+      font-size: 16px;
+      font-weight: bold;
+
+      transition: background 0.2s;
+    }
+
+    .site-knop:hover {
+      background: #5568d9;
+    }
+
+    .succes {
+      color: #188038;
+    }
+
+    .fout {
+      color: #d93025;
     }
   </style>
 </head>
@@ -64,37 +142,78 @@
 
   <div class="login-box">
 
-    <h2>Inloggen</h2>
+    <h1>Inloggen</h1>
 
+    <p class="subtitle">
+      Vul je gegevens in om verder te gaan
+    </p>
+
+    <!-- Gebruikersnaam -->
     <input
       type="text"
       id="gebruikersnaam"
       placeholder="Gebruikersnaam"
+      autocomplete="username"
     >
 
+    <!-- Wachtwoord -->
     <input
       type="password"
       id="wachtwoord"
       placeholder="Wachtwoord"
+      autocomplete="current-password"
     >
 
-    <button onclick="inloggen()">Inloggen</button>
+    <!-- Inlogknop -->
+    <button onclick="inloggen()">
+      Inloggen
+    </button>
 
+    <!-- Foutmelding / succesmelding -->
     <p id="melding"></p>
 
+
+    <!-- ============================== -->
+    <!-- KNOP 1: PERSOONLIJK             -->
+    <!-- ============================== -->
+
     <div id="persoonlijkKnop">
+
       <a
-        class="persoonlijk-knop"
+        class="site-knop"
         href="https://sites.google.com/leerling.tabor.nl/klassieke-talen/persoonlijk"
       >
         Naar Persoonlijk
       </a>
+
+    </div>
+
+
+    <!-- ============================== -->
+    <!-- KNOP 2: OVERZICHT TEKSTEN       -->
+    <!-- ============================== -->
+
+    <div id="tekstenKnop">
+
+      <a
+        class="site-knop"
+        href="https://sites.google.com/leerling.tabor.nl/klassieke-talen/latijn/tvt-latijn"
+      >
+        Ga naar overzicht teksten
+      </a>
+
     </div>
 
   </div>
 
+
   <script>
+
     function inloggen() {
+
+      /*
+        Gegevens die de gebruiker heeft ingevuld
+      */
 
       const gebruikersnaam =
         document.getElementById("gebruikersnaam").value;
@@ -102,26 +221,87 @@
       const wachtwoord =
         document.getElementById("wachtwoord").value;
 
+
+      /*
+        Juiste inloggegevens
+      */
+
+      const juisteGebruikersnaam = "ncos.tabor";
+
+      const juisteWachtwoord = "W3lKom33!";
+
+
+      /*
+        Elementen op de pagina
+      */
+
+      const melding =
+        document.getElementById("melding");
+
+      const persoonlijkKnop =
+        document.getElementById("persoonlijkKnop");
+
+      const tekstenKnop =
+        document.getElementById("tekstenKnop");
+
+
+      /*
+        Controleren of de gegevens kloppen
+      */
+
       if (
-        gebruikersnaam === "ncos.tabor" &&
-        wachtwoord === "L0g1npassw0rd"
+        gebruikersnaam === juisteGebruikersnaam &&
+        wachtwoord === juisteWachtwoord
       ) {
 
-        document.getElementById("melding").textContent =
+        /*
+          Login is goed
+        */
+
+        melding.textContent =
           "Inloggen gelukt!";
 
-        document.getElementById("persoonlijkKnop").style.display =
+        melding.className =
+          "succes";
+
+
+        /*
+          Beide knoppen zichtbaar maken
+        */
+
+        persoonlijkKnop.style.display =
           "block";
+
+        tekstenKnop.style.display =
+          "block";
+
 
       } else {
 
-        document.getElementById("melding").textContent =
-          "Onjuiste inloggegevens.";
+        /*
+          Login is fout
+        */
 
-        document.getElementById("persoonlijkKnop").style.display =
+        melding.textContent =
+          "Onjuiste gebruikersnaam of wachtwoord.";
+
+        melding.className =
+          "fout";
+
+
+        /*
+          Knoppen verborgen houden
+        */
+
+        persoonlijkKnop.style.display =
+          "none";
+
+        tekstenKnop.style.display =
           "none";
       }
+
     }
+
   </script>
 
 </body>
