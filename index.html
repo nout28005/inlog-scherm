@@ -51,7 +51,6 @@
 
     input {
       width: 100%;
-
       padding: 13px;
       margin: 7px 0;
 
@@ -68,7 +67,6 @@
 
     button {
       width: 100%;
-
       padding: 13px;
       margin-top: 15px;
 
@@ -94,20 +92,13 @@
       font-size: 14px;
     }
 
-    /*
-      De knoppen hieronder zijn in eerste instantie verborgen.
-      Ze verschijnen pas na succesvol inloggen.
-    */
-
-    #persoonlijkKnop,
-    #tekstenKnop {
+    #tekstvertalingenKnop {
       display: none;
       margin-top: 12px;
     }
 
     .site-knop {
       display: block;
-
       width: 100%;
       padding: 13px;
 
@@ -120,8 +111,6 @@
 
       font-size: 16px;
       font-weight: bold;
-
-      transition: background 0.2s;
     }
 
     .site-knop:hover {
@@ -148,7 +137,6 @@
       Vul je gegevens in om verder te gaan
     </p>
 
-    <!-- Gebruikersnaam -->
     <input
       type="text"
       id="gebruikersnaam"
@@ -156,7 +144,6 @@
       autocomplete="username"
     >
 
-    <!-- Wachtwoord -->
     <input
       type="password"
       id="wachtwoord"
@@ -164,42 +151,22 @@
       autocomplete="current-password"
     >
 
-    <!-- Inlogknop -->
     <button onclick="inloggen()">
       Inloggen
     </button>
 
-    <!-- Foutmelding / succesmelding -->
     <p id="melding"></p>
 
 
-    <!-- ============================== -->
-    <!-- KNOP 1: PERSOONLIJK             -->
-    <!-- ============================== -->
+    <!-- TEKSTVERTALINGEN -->
 
-    <div id="persoonlijkKnop">
+    <div id="tekstvertalingenKnop">
 
       <a
         class="site-knop"
-        href="https://sites.google.com/leerling.tabor.nl/klassieke-talen/persoonlijk"
+        href="https://sites.google.com/view/klassieke-talen-tvt/startpagina"
       >
-        Naar Persoonlijk
-      </a>
-
-    </div>
-
-
-    <!-- ============================== -->
-    <!-- KNOP 2: OVERZICHT TEKSTEN       -->
-    <!-- ============================== -->
-
-    <div id="tekstenKnop">
-
-      <a
-        class="site-knop"
-        href="https://sites.google.com/leerling.tabor.nl/klassieke-talen/latijn/tvt-latijn"
-      >
-        Ga naar overzicht teksten - Latijn
+        Tekstvertalingen
       </a>
 
     </div>
@@ -211,10 +178,6 @@
 
     function inloggen() {
 
-      /*
-        Gegevens die de gebruiker heeft ingevuld
-      */
-
       const gebruikersnaam =
         document.getElementById("gebruikersnaam").value;
 
@@ -222,41 +185,24 @@
         document.getElementById("wachtwoord").value;
 
 
-      /*
-        Juiste inloggegevens
-      */
+      const juisteGebruikersnaam =
+        "ncos.tabor";
 
-      const juisteGebruikersnaam = "ncos.tabor";
+      const juisteWachtwoord =
+        "W3lKom33!";
 
-      const juisteWachtwoord = "W3lKom33!";
-
-
-      /*
-        Elementen op de pagina
-      */
 
       const melding =
         document.getElementById("melding");
 
-      const persoonlijkKnop =
-        document.getElementById("persoonlijkKnop");
+      const tekstvertalingenKnop =
+        document.getElementById("tekstvertalingenKnop");
 
-      const tekstenKnop =
-        document.getElementById("tekstenKnop");
-
-
-      /*
-        Controleren of de gegevens kloppen
-      */
 
       if (
         gebruikersnaam === juisteGebruikersnaam &&
         wachtwoord === juisteWachtwoord
       ) {
-
-        /*
-          Login is goed
-        */
 
         melding.textContent =
           "Inloggen gelukt!";
@@ -264,23 +210,10 @@
         melding.className =
           "succes";
 
-
-        /*
-          Beide knoppen zichtbaar maken
-        */
-
-        persoonlijkKnop.style.display =
+        tekstvertalingenKnop.style.display =
           "block";
-
-        tekstenKnop.style.display =
-          "block";
-
 
       } else {
-
-        /*
-          Login is fout
-        */
 
         melding.textContent =
           "Onjuiste gebruikersnaam of wachtwoord.";
@@ -288,15 +221,7 @@
         melding.className =
           "fout";
 
-
-        /*
-          Knoppen verborgen houden
-        */
-
-        persoonlijkKnop.style.display =
-          "none";
-
-        tekstenKnop.style.display =
+        tekstvertalingenKnop.style.display =
           "none";
       }
 
